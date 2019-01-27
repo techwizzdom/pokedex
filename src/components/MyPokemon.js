@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from 'universal-cookie';
 
 import MyPokemonItem from './MyPokemonItem';
+import constants from './constants';
 
 class MyPokemon extends Component {
     constructor(props) {
@@ -103,7 +104,7 @@ class MyPokemon extends Component {
                 <table className="table myStyle myPokemonTable">
                     <thead>
                         <tr>
-                            <th>{this.state.pokemon.length} Pokemon{this.state.pokemon.length === 1 ? ' ' : 's'}</th>
+                            <th>{this.state.pokemon.length} {constants.POKEMON}{this.state.pokemon.length === 1 ? ' ' : 's'}</th>
                         </tr>
                     </thead>
                     <tbody>

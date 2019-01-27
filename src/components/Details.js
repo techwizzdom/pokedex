@@ -3,6 +3,8 @@ import axios from "axios";
 import DetailRow from './DetailRow';
 import Cookies from 'universal-cookie';
 
+import constants from './constants';
+
 class Details extends Component {
     constructor(props) {
         super(props);
@@ -24,15 +26,15 @@ class Details extends Component {
             });
             let moves = [];
             response.data.moves.forEach(element => {
-                moves.push(element.move.name);
+                moves.push(this.capitalizeFirstLetter(element.move.name));
             });
             let stats = [];
             response.data.stats.forEach(element => {
-                stats.push(`${element.stat.name}: ${element.base_stat}`)
+                stats.push(`${this.capitalizeFirstLetter(element.stat.name)}: ${element.base_stat}`)
             });
             let types = [];
             response.data.types.forEach(element => {
-                types.push(element.type.name);
+                types.push(this.capitalizeFirstLetter(element.type.name));
             });
             const image_url = response.data.sprites.front_default;
             const name = this.capitalizeFirstLetter(response.data.forms[0].name);
@@ -57,7 +59,7 @@ class Details extends Component {
             return (
                 <DetailRow 
                     asset={object}
-                    key={object.id}
+                    key={i} 
                 />
             );
         })
@@ -79,7 +81,7 @@ class Details extends Component {
                     <table className="table">
                         <thead>
                             <tr>
-                                <th>Abilities</th>
+                                <th>{constants.ABILITIES}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -90,55 +92,51 @@ class Details extends Component {
             );
         }
 
-        const divStyle = {
-            backgroundImage: 'linear-gradient(to bottom right, yellow, orange)'
-        }
-
         return (
             <div className="w3-bar w3-white w3-border-bottom w3-xlarge">
-                <div className="w3-display-container" style={divStyle}>
+                <div className="w3-display-container myStyle">
                     <img id={this.state.pokemon.id} className="pokemonItem w3-padding" src={this.state.pokemon.image_url} alt="Cinque Terre"/>
                     <span className="w3-display-bottomright w3-padding">{this.state.pokemon.name}</span>
                 </div>
-                <div className="w3-bar w3-white w3-border-bottom w3-xlarge putToFavs" style={divStyle} onClick={this.putToMyPokemon}>
+                <div className="w3-bar w3-white w3-border-bottom w3-xlarge putToFavs myStyle" onClick={this.putToMyPokemon}>
                     <a>
                         <img id="abcd" src="https://logos.textgiraffe.com/logos/logo-name/My-designstyle-love-heart-m.png" width="50" height="50" className="ml-5 mt-2 mb-2" alt=""/>
                     </a> 
                 </div>
-                <table className="table" style={divStyle}>
+                <table className="table myStyle">
                     <thead>
                         <tr>
-                            <th>Abilities</th>
+                            <th>{constants.ABILITIES}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.populateTable('abilities')}
                     </tbody>
                 </table>   
-                <table className="table" style={divStyle}>
+                <table className="table myStyle">
                     <thead>
                         <tr>
-                            <th>Stats</th>
+                            <th>{constants.STATS}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.populateTable('stats')}
                     </tbody>
                 </table>
-                <table className="table" style={divStyle}>
+                <table className="table myStyle">
                     <thead>
                         <tr>
-                            <th>Types</th>
+                            <th>{constants.TYPES}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.populateTable('types')}
                     </tbody>
                 </table>
-                <table className="table" style={divStyle}>
+                <table className="table myStyle">
                     <thead>
                         <tr>
-                            <th>Moves</th>
+                            <th>{constants.MOVES}</th>
                         </tr>
                     </thead>
                     <tbody>

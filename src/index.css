@@ -51,7 +51,8 @@ code {
 }
 
 .myStyle {
-  background-image: linear-gradient(to bottom right, yellow, orange)
+  background-image: linear-gradient(to bottom right, yellow, orange);
+  width: 100%;
 }
 
 .myPokemonTable {
