@@ -11,7 +11,7 @@ class Index extends Component {
 
     getPokemonUrls = () => {
         let urls = [];
-        for (let i = 1; i < 150; i++) {
+        for (let i = 1; i < 150 ; i++) {
             urls.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${i}/`));
         }
         return urls;
